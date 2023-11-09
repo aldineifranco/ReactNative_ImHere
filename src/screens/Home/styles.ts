@@ -4,8 +4,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 8,
-    backgroundColor: "#181818",
-    padding: 60,
+    backgroundColor: "#18181b",
+    padding: 32,
   },
   eventName: {
     fontSize: 20,
@@ -18,27 +18,33 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     color: "#cdcdcd",
   },
-
+  form: {
+    width: "100%",
+    flexDirection: "row",
+    marginTop: 32,
+    marginBottom: 40,
+    gap: 12,
+  },
   input: {
+    flex: 1,
     height: 56,
-    backgroundColor: "#1f1e25",
+    backgroundColor: "#27272a",
     borderRadius: 4,
     color: "#fff",
-    padding: 8,
+    padding: 16,
     fontSize: 16,
-    marginTop: 16,
   },
   button: {
     width: 56,
     height: 56,
-    backgroundColor: '#31CF67',
+    backgroundColor: "#059669",
     borderRadius: 4,
 
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 32,
-  }
+  },
 });
