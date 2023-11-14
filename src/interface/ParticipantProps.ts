@@ -1,5 +1,5 @@
 export interface ParticipantProps {
-  id?: number;
+  id: string;
   name?: string;
   onRemove?: () => void;
 }

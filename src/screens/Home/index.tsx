@@ -1,77 +1,33 @@
+import React, { useState } from 'react'
 import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native'
 import { styles } from './styles'
 import { Participant } from '../../components/Participant'
-import { ParticipantProps } from '../../interface/ParticipantProps'
-
 
 export default function Home() {
-
-  const participants: ParticipantProps[] = [
-    {
-      id: 1,
-      name: 'Aldinei'
-    },
-    {
-      id: 2,
-      name: 'Michele'
-    },
-    {
-      id: 3,
-      name: 'Davi'
-    },
-    {
-      id: 4,
-      name: 'Nathan'
-    },
-    {
-      id: 5,
-      name: 'José'
-    },
-    {
-      id: 6,
-      name: 'Matheus'
-    },
-    {
-      id: 7,
-      name: 'João'
-    },
-    {
-      id: 8,
-      name: 'Jo'
-    },
-    {
-      id: 9,
-      name: 'Ester'
-    },
-    {
-      id: 10,
-      name: 'José'
-    },
-
-  ]
-
+  const [participants, setParticipants] = useState<string[]>([])
+  const [participantName, setParticipantName ] = useState('')
 
   function handleParticipantAdd() {
-    if (participants.some(participant => participant.name === participant.name)) {
-      return Alert.alert("Participante Existe", "Já existe um participante na lista com este nome.")
-    }
-
-    return console.log('Adicionou participante')
+    if (participants.includes(participantName)) {
+      return Alert.alert("Participante Existe", "Já existe um participante na lista com este nome.");
+    } 
+    
+    setParticipants(prevState => [...prevState, participantName]);
+    setParticipantName('');
   }
 
   function handleParticipantRemove(name: string) {
     Alert.alert("Tem Certeza?", `Remover o participante ${name} ?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert("Deletado", `Participante ${name} Deletado`)
+        onPress: () => 
+        setParticipants(prevState => prevState.filter((participant) => participant !== name))
       },
       {
         text: 'Não',
         style: 'cancel'
       }
     ])
-
-    console.log(`Você clicou no participante ${name}`)
   }
 
   return (
@@ -85,6 +41,8 @@ export default function Home() {
           style={styles.input}
           placeholder='Nome do participante'
           placeholderTextColor={'#555'}
+          onChangeText={setParticipantName}
+          value={participantName}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
@@ -96,15 +54,15 @@ export default function Home() {
 
       <FlatList
         data={participants}
-        keyExtractor={(item) => String(item.id)}
+        keyExtractor={(item) => (item)}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <Participant
-            id={item.id}
-            name={item.name}
+            id= {item}
+            name={item}
             onRemove={() => {
-              if (item.name) {
-                handleParticipantRemove(item.name)
+              if (item) {
+                handleParticipantRemove(item)
               }
             }}
           />

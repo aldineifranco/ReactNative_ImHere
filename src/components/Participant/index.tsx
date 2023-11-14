@@ -6,7 +6,7 @@ import { ParticipantProps } from '../../interface/ParticipantProps'
 export function Participant({ name, onRemove }: ParticipantProps) {
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} id='id'>
       <Text style={styles.name}>
         {name}
       </Text>
