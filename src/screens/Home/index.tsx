@@ -5,13 +5,13 @@ import { Participant } from '../../components/Participant'
 
 export default function Home() {
   const [participants, setParticipants] = useState<string[]>([])
-  const [participantName, setParticipantName ] = useState('')
+  const [participantName, setParticipantName] = useState('')
 
   function handleParticipantAdd() {
     if (participants.includes(participantName)) {
       return Alert.alert("Participante Existe", "Já existe um participante na lista com este nome.");
-    } 
-    
+    }
+
     setParticipants(prevState => [...prevState, participantName]);
     setParticipantName('');
   }
@@ -20,8 +20,9 @@ export default function Home() {
     Alert.alert("Tem Certeza?", `Remover o participante ${name} ?`, [
       {
         text: 'Sim',
-        onPress: () => 
-        setParticipants(prevState => prevState.filter((participant) => participant !== name))
+        onPress: () =>
+          setParticipants(prevState => prevState.filter((participant) => participant !== name))
+
       },
       {
         text: 'Não',
@@ -58,7 +59,7 @@ export default function Home() {
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <Participant
-            id= {item}
+            id={item}
             name={item}
             onRemove={() => {
               if (item) {
